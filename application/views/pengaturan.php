@@ -57,6 +57,7 @@
                                         </div>
                                         <div class="card-body">
                                         <?= $this->session->flashdata('ubahTerbuka'); ?>
+                                        <?= $this->session->flashdata('ubahTertutup'); ?>
                                             <div class="row">
                                             <div class="col-6">
                                                 <h3>Terbuka</h3>
@@ -78,7 +79,6 @@
                                             </div> -->
                                             <div class="col-6">
                                                 <h3>Tertutup</h3>
-                                                <?= $this->session->flashdata('ubahTertutup'); ?>
                                                 <form method="POST" action="<?= base_url(); ?>pengaturan/ubahTertutup">
                                                     <input type="number" name="ketinggiantertutup" class="form-control" placeholder="Silahkan diisi" min="0" max="100">
                                                 <div class="small-box-footer mt-2">

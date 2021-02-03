@@ -176,10 +176,6 @@
                 $("#profile #nomor").attr("disabled", true);
             });
         })
-    </script>
-    </body>
-</html>
-
         // $("#tombol-ubah").click(function(e) {
         //             if ($(this).data("btn") == "edit") {
         //                 e.preventDefault();
@@ -200,3 +196,6 @@
         //         $("#ubah-password #passwordlama").attr("disabled", true);
         //         $("#ubah-password #passwordbaru").attr("disabled", true);
         // });
+    </script>
+    </body>
+</html>

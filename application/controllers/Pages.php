@@ -13,66 +13,6 @@ class Pages extends CI_Controller
         $this->load->model('m_pengaturan');
     }
     
-    // public function index()
-    // {
-    //     if ($this->session->has_userdata('user')) {
-    //         $email = $this->session->userdata('user')['email'];
-    //         $data["user"] = $this->m_profile->getUser($email);
-    //         $data["title"] = "Dashboard";
-    //         $this->load->view('templates/header',$data);
-    //         $this->load->view('dashboard',$data);
-    //     } else {
-    //         redirect(base_url('authentication/login'));
-    //     }
-    // }
-
-    // public function profile()
-    // {
-    //     if ($this->session->has_userdata('user')) {
-    //         $email = $this->session->userdata('user')['email'];
-    //         $data["title"] = "Profile";
-    //         $data["user"] = $this->m_profile->getUser($email);
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('profile');
-    //     } else {
-    //         redirect(base_url('authentication/login'));
-    //     }
-    // }
-    
-    // public function waterlevel()
-    // {
-    //     if ($this->session->has_userdata('user')) {
-    //         if (function_exists('date_default_timezone_set')) {
-    //             date_default_timezone_set('Asia/Jakarta');
-    //             $waktu = date("Y-m-d");
-    //         }
-    //         $email = $this->session->userdata('user')['email'];
-    //         $data["user"] = $this->m_profile->getUser($email);
-    //         $data["monitoring"]=$this->m_sensor->monitoring($waktu);
-    //         $data["datamonitoring"]=$this->m_sensor->ambildata();
-    //         $data["title"] = "Water Level";
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('waterlevel', $data);
-    //     } else {
-    //         redirect(base_url('authentication/login'));
-    //     }
-    // }
-
-    // public function pengaturan(){
-    //     if ($this->session->has_userdata('user')) {
-    //         $email = $this->session->userdata('user')['email'];
-    //         $data["title"] = "Pengaturan";
-    //         $data["user"] = $this->m_profile->getUser($email);
-    //         $data["ketinggian"] = $this->m_pengaturan->ambilAturketinggian()->row_array();
-    //         $data["terbuka"] = $data["ketinggian"]["terbuka"];
-    //         $data["tertutup"] = $data["ketinggian"]["tertutup"];
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('pengaturan', $data);
-    //     } else {
-    //         redirect(base_url('authentication/login'));
-    //     }
-    // }
-    
     public function simpan(){
         $this->load->model('m_sensor');
         if (isset($_GET['data'])){
