@@ -35,11 +35,11 @@ class Profile extends CI_Controller
             
             $this->m_profile->savePassword($passwordbaru,$email);
             $this->session->set_flashdata('password', '<div class="alert alert-success" role="alert">Password Berhasil Diganti</div>');
-            redirect(base_url('pages/profile'));
+            redirect(base_url('profile'));
         }
          else {
             $this->session->set_flashdata('password', '<div class="alert alert-danger" role="alert">Password Lama Salah</div>');
-            redirect(base_url('pages/profile'));
+            redirect(base_url('profile'));
 
         }
     }
@@ -61,7 +61,8 @@ class Profile extends CI_Controller
         
         $this->m_profile->ubahProfil($data, $email);
 
-        redirect("pages/profile");
+        $this->session->set_flashdata('ubahprofil', '<div class="alert alert-success" role="alert">Data Berhasil Diubah</div>');
+        redirect(base_url('profile'));
 
     }
 }

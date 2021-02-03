@@ -66,6 +66,7 @@
                                     <h3 class="card-title">Informasi Profil</h3>
                                 </div>
                                 <div class="card-body">
+                                    <?= $this->session->flashdata('ubahprofil'); ?>
                                     <form class="form-horizontal" method="POST" id="profile" action="<?= base_url() . 'profile/ubahProfil'; ?>">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Nama</label>

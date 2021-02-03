@@ -56,11 +56,12 @@
                                             <h3 class="card-title">Pengaturan Ketinggian</h3>
                                         </div>
                                         <div class="card-body">
+                                        <?= $this->session->flashdata('ubahTerbuka'); ?>
                                             <div class="row">
                                             <div class="col-6">
                                                 <h3>Terbuka</h3>
                                                 <form method="POST" action="<?= base_url(); ?>pengaturan/ubahTerbuka">
-                                                <input type="number" name="ketinggianterbuka" class="form-control" placeholder="Silahkan diisi" min="0" max="100">
+                                                    <input type="number" name="ketinggianterbuka" class="form-control" placeholder="Silahkan diisi" min="0" max="100">
                                                 <div class="small-box-footer mt-2">
                                                     <button class="btn btn-info" type="submit" >Ubah</button>
                                                 </div>
@@ -77,8 +78,9 @@
                                             </div> -->
                                             <div class="col-6">
                                                 <h3>Tertutup</h3>
+                                                <?= $this->session->flashdata('ubahTertutup'); ?>
                                                 <form method="POST" action="<?= base_url(); ?>pengaturan/ubahTertutup">
-                                                <input type="number" name="ketinggiantertutup" class="form-control" placeholder="Silahkan diisi" min="0" max="100">
+                                                    <input type="number" name="ketinggiantertutup" class="form-control" placeholder="Silahkan diisi" min="0" max="100">
                                                 <div class="small-box-footer mt-2">
                                                     <button class="btn btn-info" type="submit">Ubah</button>
                                                 </div>

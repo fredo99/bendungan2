@@ -30,7 +30,7 @@ class M_sensor extends CI_Model
 
     function ambildataterbaru($now)
     {
-        $query = $this->db->query("SELECT ketinggian FROM monitoring WHERE waktu LIKE '$now%' order by id_sensor desc limit 1");
+        $query = $this->db->query("SELECT ketinggian FROM monitoring WHERE tanggal LIKE '$now%' order by id_sensor desc limit 1");
         return $query->row_array();
     }
 

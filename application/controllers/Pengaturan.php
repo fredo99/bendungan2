@@ -32,7 +32,8 @@ class Pengaturan extends CI_Controller
 
         $this->m_pengaturan->ubahTerbuka($tinggi);
 
-        redirect("pages/pengaturan");
+        $this->session->set_flashdata('ubahTerbuka', '<div class="alert alert-success" role="alert">Ketinggian Pintu Terbuka Berhasil Diubah</div>');
+        redirect(base_url('pengaturan'));
     }
     // public function ubahTerbukasebagian(){
     //     $tinggi = $this->input->post("ketinggianterbukasebagian");
@@ -46,7 +47,8 @@ class Pengaturan extends CI_Controller
 
         $this->m_pengaturan->ubahTertutup($tinggi);
 
-        redirect("pages/pengaturan");
+        $this->session->set_flashdata('ubahTertutup', '<div class="alert alert-success" role="alert">Ketinggian Pintu Tertutup Berhasil Diubah</div>');
+        redirect(base_url('pengaturan'));
     }
 
     public function ubahOtomatisasi(){
@@ -54,7 +56,7 @@ class Pengaturan extends CI_Controller
 
         $this->m_pengaturan->ubahOtomatisasi($status);
 
-        redirect("pages/pengaturan");
+        redirect(base_url('pengaturan'));
     }
 
 }
