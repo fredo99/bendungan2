@@ -55,8 +55,25 @@ class Pengaturan extends CI_Controller
         $status = $this->input->post("status");
 
         $this->m_pengaturan->ubahOtomatisasi($status);
+    }
 
-        redirect(base_url('pengaturan'));
+    public function ambilDataotomatisasi(){
+        $data = $this->m_pengaturan->ambilDataotomatisasi();
+        $status = $data['status'];
+
+        echo json_encode($status);
+    }
+
+    public function ubahStatusPintu(){
+        $status = $this->input->post("status");
+        $this->m_pengaturan->ubahStatusPintu($status);
+        echo json_encode(true);
+    }
+
+    public function ambildataPintu(){
+        $data = $this->m_pengaturan->ambilDataotomatisasi();
+        $data = $data['status'];
+        echo json_encode($data);
     }
 
 }

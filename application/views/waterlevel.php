@@ -93,6 +93,7 @@
         });
     });
         function fetch(start_date, end_date){
+            var i=1;
             $.ajax({
                 url: "<?php echo base_url();?>Waterlevel/ambilDatatanggal",
                 type: "POST",
@@ -104,7 +105,7 @@
                 success: function(data){
                     // console.log(start_date);
                     // console.log(end_date);
-                    var i="1";
+                    
                     $('#ketinggian_air').DataTable({
                         // "data": data,
                         "lengthChange": true,
@@ -117,7 +118,7 @@
                         "data": data,
                         "responsive" : true,
                         "columns": [{
-                                    "data" : "nomor",
+                                    "data" : "id_sensor",
                                     "render": function ( data, type, row, meta ) {
                                     return i++;
                                 },
@@ -139,9 +140,11 @@
                                 "render": function ( data, type, row, meta ) {
                                     return `${row.waktu}`;
                                 },
-                            },
-                        ]
+                            }
+                        ],
                     });
+                    i=1;
+                    //location.reload();
                 }
             });
         }

@@ -12,7 +12,7 @@ class M_waterlevel extends CI_Model
 
     function ambilDataketinggian()
     {
-        $query = $this->db->query("SELECT * FROM monitoring");
+        $query = $this->db->query("SELECT * FROM monitoring ORDER BY tanggal desc");
         return $query->result_array();
     }
 }

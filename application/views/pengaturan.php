@@ -147,17 +147,20 @@
                                         </div>
                                         <hr>
                                             <div class="row" id="otomatisasipintu" style="display: none;">
-                                                <div class="col-md-4">
+                                                <div class="col-md-4" >
                                                     <h3>Terbuka</h3>
-                                                    <input type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="light">
+                                                    <input class="btn btn-success" onclick = "ubahStatus(1)" id="terbuka" value="ON"></input>
+                                                    <!-- <input type="checkbox" checked class="terbuka" data-toggle="toggle" id="terbukadong" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="light" onclick = "ubahStatus()"> -->
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h3>Terbuka Sebagian</h3>
-                                                    <input type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="light">
+                                                    <input class="btn btn-success" onclick = "ubahStatus(2)" id="terbuka_sebagian" value="ON"></input>
+                                                    <!-- <input type="checkbox" checked class="terbuka_sebagian" data-toggle="toggle" id="terbuka_sebagian" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="light" onclick = "ubahStatus()"> -->
                                                 </div>
                                                 <div class="col-md-4">
                                                     <h3>Tertutup</h3>
-                                                    <input type="checkbox" data-toggle="toggle" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="light">
+                                                    <input class="btn btn-success" onclick = "ubahStatus(0)" id="tertutup" value="ON"></input>
+                                                    <!-- <input type="checkbox" checked class="tertutup" data-toggle="toggle" id="tertutup" data-on="Aktif" data-off="Tidak Aktif" data-onstyle="success" data-offstyle="light" onclick = "ubahStatus()"> -->
                                                 </div>
                                             <!-- </div> -->
                                             </div>
@@ -182,30 +185,62 @@
             }else{
                 document.getElementById("otomatisasipintu").style.display = "none";
             }
-        
-        // document.getElementById("simpan_kelembaban").style.display = "block";
-    }
-
-    function simpan_kelembaban() {
-        var status = document.getElementById("otomatiasi").value;
-        $.ajax({
-        type: "post",
-        url: "<?php echo base_url(); ?>pengaturan/ubahOtomatisasi",
-        data: {
-            status: status
-        },
-        dataType: "json",
-        success: function(response) {
-            console.log(response);
-            document.getElementById("ukur_kelembaban").innerHTML = status;
-            document.getElementById("otomatisasipintu").style.display = "none";
-            Swal.fire(
-            'Selamat',
-            'Otomatisasi berhasi diubah',
-            'success'
-            )
         }
-        });
-    }
+
+        setInterval(function(){
+            $.ajax({
+                    url: "<?php echo base_url(); ?>Pengaturan/ambilDataPintu",
+                    dataType: 'json',
+                    success: function(data) {
+                        //console.log(data);
+                        if (data == 0) { //tertutup
+                            document.getElementById("tertutup").disabled = true;
+                            document.getElementById("tertutup").className = "btn btn-success";
+                            document.getElementById("tertutup").value = "ON";
+                            document.getElementById("terbuka").disabled = false;
+                            document.getElementById("terbuka").className = "btn btn-secondary";
+                            document.getElementById("terbuka").value = "OFF";
+                            document.getElementById("terbuka_sebagian").disabled = false;
+                            document.getElementById("terbuka_sebagian").className = "btn btn-secondary";
+                            document.getElementById("terbuka_sebagian").value = "OFF";
+                        } else if (data == 1) { // terbuka
+                            document.getElementById("tertutup").disabled = false;
+                            document.getElementById("tertutup").className = "btn btn-secondary";
+                            document.getElementById("tertutup").value = "OFF";
+                            document.getElementById("terbuka").disabled = true;
+                            document.getElementById("terbuka").className = "btn btn-success";
+                            document.getElementById("terbuka").value = "ON";
+                            document.getElementById("terbuka_sebagian").disabled = false;
+                            document.getElementById("terbuka_sebagian").className = "btn btn-secondary";
+                            document.getElementById("terbuka_sebagian").value = "OFF";
+                        } else if(data == 2){ //terbuka_sebagian
+                            document.getElementById("tertutup").disabled = false;
+                            document.getElementById("tertutup").className = "btn btn-secondary";
+                            document.getElementById("tertutup").value = "OFF";
+                            document.getElementById("terbuka").disabled = false;
+                            document.getElementById("terbuka").className = "btn btn-secondary";
+                            document.getElementById("terbuka").value = "OFF";
+                            document.getElementById("terbuka_sebagian").disabled = true;
+                            document.getElementById("terbuka_sebagian").className = "btn btn-success";
+                            document.getElementById("terbuka_sebagian").value = "ON";
+                        }
+                    }
+                });
+        }, 1000);
+    </script>
+
+    <script>
+        function ubahStatus(value){
+            var status= value
+            $.ajax({
+                url: "<?php echo base_url(); ?>Pengaturan/ubahStatusPintu",
+                type: "POST",
+                data: {status: value},
+                dataType: 'json',
+                success: function(data) {
+                    console.log(value);
+                }
+            });
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
