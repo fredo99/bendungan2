@@ -17,6 +17,7 @@ WiFiClient client;
 //variabel
 long duration, distance;
 String status_pintu, url;
+long ket_terbuka, ket_tertutup;
 
 void setup() {
   Serial.begin(9600);
@@ -95,8 +96,8 @@ void loop() {
         Serial.println(error.f_str());
         return;
       }else{ // parsing data success
-          ket_terbuka = doc[0]["0"].as<String>();
-          ket_tertutup = doc[1]["1"].as<String>();
+          ket_terbuka = doc[0]["0"];
+          ket_tertutup = doc[1]["1"];
           status_pintu = doc[2]["status"].as<String>();
           
           Serial.println("Ketinggian terbuka  : " +ket_terbuka);
@@ -107,7 +108,7 @@ void loop() {
       Serial.println("No Data Loaded!");
     }
 
-    if(status_pintu == 0){ // KONDISI TERTUTUP
+    if(status_pintu == "0"){ // KONDISI TERTUTUP
     if(distance >= ket_terbuka){ // ketinggian air lebih besar dari batas ket_terbuka dan kondisi pintu tertutup
     digitalWrite(CW, LOW);
     delay(500);
@@ -129,7 +130,7 @@ void loop() {
        }else if(distance <= ket_tertutup){ // kketinggian air kurang dari batas ket_tertutup dan kondisi pintu tertutup
         Serial.println("Tertutup");
        }
-  } if(status_pintu == 1){ // KONDISI TERBUKA PENUH
+  } if(status_pintu == "1"){ // KONDISI TERBUKA PENUH
       if(distance >= ket_terbuka){ // ketinggian air lebih besar dari batas ket_terbuka dan kondisi pintu terbuka penuh
       delay(1000);
       Serial.println("TERBUKA PENUH");
@@ -152,7 +153,7 @@ void loop() {
       delay(1000);
       Serial.println("Tertutup");
      }
-  } if(status_pintu == 2){ //KONDISI TERBUKA SEBAGIAN
+  } if(status_pintu == "2"){ //KONDISI TERBUKA SEBAGIAN
      if (distance >= ket_terbuka){ // ketinggian air kurang dari batas ket_terbuka dan kondisi pintu terbuka sebagian
       //searah jarum jam
       digitalWrite(CW, LOW);
@@ -175,7 +176,7 @@ void loop() {
       delay(1000);
       Serial.println("Tertutup");
      }
-
+  }
 }
 
 void ketinggian_air(){
