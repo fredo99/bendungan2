@@ -137,8 +137,8 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <form method="POST" action="">
-                                                    <select class="form-control" name="otomatisasi" id="otomatisasi" onchange="ubahOtomatisasi(this.value)">
-                                                        <option value="2" >--Pilih--</option>
+                                                    <select class="form-control" name="otomatisasi" id="otomatisasi" onchange="ubahOtomatisasi(this.value)" onclick="ubahStatusotomatisasi(this.value)">
+                                                        <option value="">--Pilih--</option>
                                                         <option value="0">Manual</option>
                                                         <option value="1">otomatis</option>
                                                     </select>
@@ -234,6 +234,19 @@
             var status= value
             $.ajax({
                 url: "<?php echo base_url(); ?>Pengaturan/ubahStatusPintu",
+                type: "POST",
+                data: {status: value},
+                dataType: 'json',
+                success: function(data) {
+                }
+            });
+        }
+    </script>
+    <script>
+        function ubahStatusotomatisasi(value){
+            var status= value
+            $.ajax({
+                url: "<?php echo base_url(); ?>Pengaturan/ubahOtomatisasi",
                 type: "POST",
                 data: {status: value},
                 dataType: 'json',

@@ -71,7 +71,7 @@ class Pengaturan extends CI_Controller
     }
 
     public function ambildataPintu(){
-        $data = $this->m_pengaturan->ambilDataotomatisasi();
+        $data = $this->m_pengaturan->ambilDatapintu();
         $data = $data['status'];
         echo json_encode($data);
     }
