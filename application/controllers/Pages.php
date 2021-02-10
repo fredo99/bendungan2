@@ -14,6 +14,7 @@ class Pages extends CI_Controller
     }
     
     public function simpan(){
+
         $ketinggianair = $this->input->get('ket_air');
 
         if (function_exists('date_default_timezone_set')) {
@@ -31,8 +32,8 @@ class Pages extends CI_Controller
         $this->m_sensor->simpan($datasensor);
 
         //ambil thresshold ketinggian pintu terbuka
-        $Terbuka = $this->m_pengaturan->ambilTerbuka();
-        $Terbuka = $Terbuka['terbuka'];
+        $terbuka = $this->m_pengaturan->ambilTerbuka();
+        $terbuka = $terbuka['terbuka'];
         // ambil thresshold ketinggian pintu tertutup
         $tertutup = $this->m_pengaturan->ambilTertutup();
         $tertutup = $tertutup['tertutup'];
@@ -42,26 +43,23 @@ class Pages extends CI_Controller
         $otomatisasi = $otomatisasi['status'];
 
         if ($otomatisasi == 1) { //otomatis nyala
-            //ambil status jendela terakhir
             $status_pintu = $this->m_pengaturan->ambilDatapintu();
             $status_pintu = $status_pintu['status'];
 
             if($ketinggianair <= $tertutup){
                 $this->m_sensor->tutupPintu();
             }
-            if($ketinggianair > $tertutup && $ketinggianair < $Terbuka){
+            if($ketinggianair > $tertutup && $ketinggianair < $terbuka){
                 $this->m_sensor->bukaPintusebagian();
             }
-            if($ketinggianair >= $Terbuka){
+            if($ketinggianair >= $terbuka){
                 $this->m_sensor->bukaPintu();
             }
-        }else{
-
         }
 
-        $status_pintu = $this->m_pengaturan->ambilDatapintu();
-        array_push($status_pintu, $Terbuka);
-        array_push($status_pintu, $tertutup);
+        $status_pintu = $this->m_pengaturan->ambilDatapintu1()->result_array();
+        $data_aturan = array('terbuka' => $terbuka, 'tertutup'=> $tertutup);
+        array_push($status_pintu, $data_aturan);
 
         echo json_encode($status_pintu);
     }

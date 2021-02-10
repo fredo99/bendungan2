@@ -44,6 +44,12 @@ class M_pengaturan extends CI_Model
         return $query->row_array();
     }
 
+    public function ambilDatapintu1(){
+        $query = $this->db->query("SELECT status FROM pintu WHERE id_pintu='1'");
+
+        return $query;
+    }
+
     public function ubahStatusPintu($status){
         $this->db->query("UPDATE pintu SET status = $status WHERE id_pintu='1'");
     }

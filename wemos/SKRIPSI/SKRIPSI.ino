@@ -70,7 +70,7 @@ void loop() {
       while(client.connected() || client.available()){ // baca karakter 1 per satu untuk dimasukan ke string D sebagai bentuk json nantinya
         if (client.available()){
           char c = client.read();
-          if(c == '{') {
+          if(c == '[') {
             parse_json = true;
           }
           if(parse_json){
@@ -96,9 +96,9 @@ void loop() {
         Serial.println(error.f_str());
         return;
       }else{ // parsing data success
-          ket_terbuka = doc[0]["0"];
-          ket_tertutup = doc[1]["1"];
-          status_pintu = doc[2]["status"].as<String>();
+          ket_terbuka = doc[1]["terbuka"].as<float>();
+          ket_tertutup = doc[1]["tertutup"].as<float>();
+          status_pintu = doc[0]["status"].as<String>();
           
           Serial.println("Ketinggian terbuka  : " +ket_terbuka);
           Serial.println("Ketinggian tertutup : " +ket_tertutup);
