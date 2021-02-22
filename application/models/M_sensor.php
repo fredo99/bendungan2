@@ -19,7 +19,7 @@ class M_sensor extends CI_Model
     }
 
     function datamonitoring($now){
-        $query = $this->db->query("SELECT * FROM monitoring WHERE tanggal LIKE '$now%' order by tanggal LIMIT 10");
+        $query = $this->db->query("SELECT * FROM monitoring WHERE tanggal LIKE '$now%' order by tanggal desc LIMIT 10");
         return $query->result();
     }
 
@@ -37,11 +37,6 @@ class M_sensor extends CI_Model
     function ambilStatus(){
         $query = $this->db->query("SELECT status FROM pintu Where id_pintu = '1'");
             return $query->result();
-    }
-
-    function updateStatus($status){
-        $this->db->query("UPDATE pintu SET status= '$status' Where id_pintu = '1'");
-            return TRUE;
     }
 
     function bukaPintu(){

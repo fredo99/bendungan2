@@ -41,34 +41,28 @@ class Pages extends CI_Controller
         // ambil data otomatisasi
         $otomatisasi = $this->m_pengaturan->ambilDataotomatisasi();
         $otomatisasi = $otomatisasi['status'];
+        //ambil status pintu terakhir
+        $status_pintu_terakhir = $this->m_pengaturan->ambilDatapintu1()->row_array();
+        $status_pintu_terakhir = $status_pintu_terakhir['status'];
 
         if ($otomatisasi == 1) { //otomatis nyala
-            $status_pintu = $this->m_pengaturan->ambilDatapintu();
-            $status_pintu = $status_pintu['status'];
-
             if($ketinggianair <= $tertutup){
                 $this->m_sensor->tutupPintu();
             }
-            if($ketinggianair > $tertutup && $ketinggianair < $terbuka){
+            elseif($ketinggianair > $tertutup && $ketinggianair < $terbuka){
                 $this->m_sensor->bukaPintusebagian();
             }
-            if($ketinggianair >= $terbuka){
+            elseif($ketinggianair >= $terbuka){
                 $this->m_sensor->bukaPintu();
             }
         }
-
-        $status_pintu = $this->m_pengaturan->ambilDatapintu1()->result_array();
-        $data_aturan = array('terbuka' => $terbuka, 'tertutup'=> $tertutup);
-        array_push($status_pintu, $data_aturan);
-
+        $status_pintu = $this->m_pengaturan->ambilDatapintu1()->result();
         echo json_encode($status_pintu);
     }
 
-    public function ubahStatusPintu(){
-        if(isset($_GET['status'])){
-            $status = $this->input->get('status');
-        }
-       $data = $this->m_sensor->updateStatus($status);
-            echo $data;
+    public function ambil()
+    {
+        $status_pintu = $this->m_pengaturan->ambilDatapintu1()->result();
+        echo json_encode($status_pintu);
     }
 }
