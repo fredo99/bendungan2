@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller
         $this->load->model('m_sensor');
         $this->load->model('m_profile');
         $this->load->model('m_pengaturan');
+        $this->load->model('m_datalog');
     }
 
     public function index()
@@ -60,7 +61,7 @@ class Dashboard extends CI_Controller
         echo json_encode($data);
     }
 
-    public function tampildata(){
+    public function tampilData(){
         $this->load->model('m_sensor');
         date_default_timezone_set('Asia/Jakarta');
         $waktu = date("Y-m-d");

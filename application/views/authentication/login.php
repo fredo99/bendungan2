@@ -24,12 +24,12 @@
             <?= $this->session->flashdata('message'); ?>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
               </div>
               <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
               <div class="form-group mb-4">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan kata sandi">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan kata sandi" required>
               </div>
               <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
               <input name="login" id="login" class="btn btn-block login-btn" type="submit" value="Login">

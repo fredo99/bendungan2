@@ -5,12 +5,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">WaterLevel</h1>
+                            <h1 class="m-0 text-dark">Data Log</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="<?= base_url(); ?>pages">Home</a></li>
-                                <li class="breadcrumb-item active">WaterLevel</li>
+                                <li class="breadcrumb-item active">Data Log</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -46,18 +46,23 @@
                     <div class="row mt-3">
                         <div class="col-lg-12">
                             <div class="card card-info">
-                                <div class="card-header">Tabel WaterLevel</div>
+                                <div class="card-header">Tabel Data Log</div>
                                 <!-- /.card-header -->
                                 <!-- <button class="card-tittle">tt</button> -->
                                 <div class="card">
                                     <div class="card-body">
-                                        <table id="ketinggian_air" class="table table-bordered table-striped">
+                                        <table id="datalog" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Ketinggian</th>
                                                     <th>Tanggal</th>
                                                     <th>Waktu</th>
+                                                    <th>Ketinggian</th>
+                                                    <th>Jenis Operasi</th>
+                                                    <th>Posisi Pintu</th>
+                                                    <th>Pemicu</th>
+                                                    <th>Treshold Terbuka</th>
+                                                    <th>Treshold Tertutup</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -93,9 +98,9 @@
         });
     });
         function fetch(start_date, end_date){
-            var i=1;
+            var h=1;
             $.ajax({
-                url: "<?php echo base_url();?>Waterlevel/ambilDatatanggal",
+                url: "<?php echo base_url();?>datalog/ambilDatatanggal",
                 type: "POST",
                 data:{
                     start_date : start_date,
@@ -106,7 +111,7 @@
                     // console.log(start_date);
                     // console.log(end_date);
                     
-                    $('#ketinggian_air').DataTable({
+                    $('#datalog').DataTable({
                         // "data": data,
                         "lengthChange": true,
                         "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
@@ -118,15 +123,9 @@
                         "data": data,
                         "responsive" : true,
                         "columns": [{
-                                    "data" : "id_sensor",
+                                    "data" : "nomor",
                                     "render": function ( data, type, row, meta ) {
-                                    return i++;
-                                },
-                            },
-                            {
-                                "data" : "ketinggian",
-                                "render": function ( data, type, row, meta ) {
-                                    return `${row.ketinggian}cm`;
+                                    return h++;
                                 },
                             },
                             {
@@ -140,8 +139,84 @@
                                 "render": function ( data, type, row, meta ) {
                                     return `${row.waktu}`;
                                 },
-                            }
-                        ],
+                            },
+                            {
+                                "data" : "ketinggian",
+                                "render": function ( data, type, row, meta ) {
+                                    return `${row.ketinggianair}cm`;
+                                },
+                            },
+                            {
+                                "data" : "jenisoperasi",
+                                "render": function ( data, type, row, meta ) {
+                                    for(i=0; i<data.length; i++){
+                                        var jenisoperasi = '';
+                                    if( `${row.jenisoperasi}` == 1){
+                                        jenisoperasi ='Otomatis';
+                                    }else if( `${row.jenisoperasi}` == 0){
+                                        jenisoperasi ='Manual';
+                                    }
+                                };
+                                    return jenisoperasi;
+                                },
+                            },
+                            {
+                                "data" : "posisipintu",
+                                "render": function ( data, type, row, meta ) {
+                                    for(i=0; i<data.length; i++){
+                                        var posisipintu = '';
+                                    if( `${row.posisipintu}` == 1){
+                                        posisipintu ='Terbuka';
+                                    }else if( `${row.posisipintu}` == 2){
+                                        posisipintu ='Terbuka Sebagian';
+                                    }else if( `${row.posisipintu}` == 0){
+                                        posisipintu ='Tertutup';
+                                    }
+                                };
+                                    return posisipintu;
+                                },
+                            },
+                            {
+                                "data" : "pemicu",
+                                "render": function ( data, type, row, meta ) {
+                                    var pemicu = '';
+                                    if( `${row.pemicu}` == 1){
+                                        pemicu ='Sensor';
+                                    }else if( `${row.pemicu}` == 0){
+                                        pemicu ='Pengguna';
+                                    }
+                                    return pemicu;
+                                },
+                            },
+                            {
+                                "data" : "Terbuka",
+                                "render": function ( data, type, row, meta ) {
+                                    // for(i=0; i<data.length; i++){
+                                        var terbuka = '';
+                                        if(`${row.terbuka}` === null){
+                                            terbuka ='-';
+                                        }else{
+                                            terbuka = `${row.terbuka}`;
+                                        }
+                                    // };        
+                                    return terbuka;
+                                },
+                            },
+                            {
+                                "data" : "Tertutup",
+                                "render": function ( data, type, row, meta ) {
+                                    // for(i=0; i<data.length; i++){
+                                    var tertutup = '';
+                                        if(`${row.tertutup}` === null){
+                                            tertutup ='-';
+                                        }else{
+                                            tertutup = `${row.tertutup}`;
+                                        }
+                                    // };
+                                    return tertutup;
+                                },
+                            },
+                        ]
                     });
                     i=1;
                     //location.reload();

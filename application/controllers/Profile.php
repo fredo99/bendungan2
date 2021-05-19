@@ -34,7 +34,7 @@ class Profile extends CI_Controller
         if($passwordlama == $password){
             
             $this->m_profile->savePassword($passwordbaru,$email);
-            $this->session->set_flashdata('password', '<div class="alert alert-success" role="alert">Password Berhasil Diganti</div>');
+            $this->session->set_flashdata('password', '<div class="alert alert-success" role="alert">Password Berhasil Diubah</div>');
             redirect(base_url('profile'));
         }
          else {

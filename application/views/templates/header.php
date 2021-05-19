@@ -104,6 +104,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url(); ?>datalog" <?php if($this->uri->segment(1)=="datalog"){echo 'class="nav-link active"';}?> id="sidebar" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Data Log
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url(); ?>pengaturan" <?php if($this->uri->segment(1)=="pengaturan"){echo 'class="nav-link active"';}?> id="sidebar" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>

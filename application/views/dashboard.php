@@ -119,7 +119,7 @@
             function tampil_water_level(){
                 $.ajax({
                     type : 'GET',
-                    url     : '<?php echo base_url();?>Dashboard/tampildata',
+                    url     : '<?php echo base_url();?>Dashboard/tampilData',
                     dataType    : 'JSON',
                     async   : true,
                     success : function(data){          
@@ -127,15 +127,15 @@
                         var i;
                         var no=0;
                         for(i=0; i<data.length; i++){
-                            no++;
+                        no++;
                             html = html +'<tr>'
                                     +'<td>'+no+'</td>'
-                                    +'<td>'+ data[i].ketinggian+' cm</td>'
+                                    +'<td>'+ data[i].ketinggian+'cm</td>'
                                     +'<td>'+ data[i].tanggal+'</td>'
-                                    +'<td>'+data[i].waktu;+'</td>'
+                                    +'<td>'+data[i].waktu+'</td>'
                                     +'</tr>';
-                        }
                         $("#tbl_sensor").html(html);
+                        };
                 },
                 complete    : function () {
                     setTimeout(tampil_water_level,1000);

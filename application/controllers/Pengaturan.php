@@ -10,6 +10,7 @@ class Pengaturan extends CI_Controller
         parent::__construct();
         $this->load->model('m_pengaturan');
         $this->load->model('m_profile');
+        $this->load->model('m_datalog');
     }
 
     public function index(){
@@ -20,6 +21,7 @@ class Pengaturan extends CI_Controller
             $data["ketinggian"] = $this->m_pengaturan->ambilAturketinggian()->row_array();
             $data["terbuka"] = $data["ketinggian"]["terbuka"];
             $data["tertutup"] = $data["ketinggian"]["tertutup"];
+            $data["otomatisasi"] = $this->m_pengaturan->ambilDataotomatisasi();
             $this->load->view('templates/header', $data);
             $this->load->view('pengaturan', $data);
         } else {
@@ -35,13 +37,7 @@ class Pengaturan extends CI_Controller
         $this->session->set_flashdata('ubahTerbuka', '<div class="alert alert-success" role="alert">Ketinggian Pintu Terbuka Berhasil Diubah</div>');
         redirect(base_url('pengaturan'));
     }
-    // public function ubahTerbukasebagian(){
-    //     $tinggi = $this->input->post("ketinggianterbukasebagian");
 
-    //     $this->m_pengaturan->ubahTerbukasebagian($tinggi);
-
-    //     redirect("pages/pengaturan");
-    // }
     public function ubahTertutup(){
         $tinggi = $this->input->post("ketinggiantertutup");
 
@@ -66,8 +62,18 @@ class Pengaturan extends CI_Controller
 
     public function ubahStatusPintu(){
         $status = $this->input->post("status");
+        
+
         $this->m_pengaturan->ubahStatusPintu($status);
-        echo json_encode(true);
+        
+        if (function_exists('date_default_timezone_set')) {
+            date_default_timezone_set('Asia/Jakarta');
+            $tanggal = date("Y-m-d");
+            $jam    = date("H:i:s");
+        }
+
+        $this->m_datalog->tambahLog(0, $status, 0, $tanggal, $jam);
+
     }
 
     public function ambildataPintu(){

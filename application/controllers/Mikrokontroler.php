@@ -1,6 +1,6 @@
 <?php
 
-class Pages extends CI_Controller
+class Mikrokontroler extends CI_Controller
 {
     /**
      * Class constructor.
@@ -11,6 +11,7 @@ class Pages extends CI_Controller
         $this->load->model('m_sensor');
         $this->load->model('m_profile');
         $this->load->model('m_pengaturan');
+        $this->load->model('m_datalog');
     }
     
     public function simpan(){
@@ -44,19 +45,45 @@ class Pages extends CI_Controller
         //ambil status pintu terakhir
         $status_pintu_terakhir = $this->m_pengaturan->ambilDatapintu1()->row_array();
         $status_pintu_terakhir = $status_pintu_terakhir['status'];
+        if($ketinggianair >= $terbuka){
+            $status_ketinggian = "1";
+        }
+        if ($ketinggianair > $tertutup && $ketinggianair < $terbuka) {
+            $status_ketinggian = "2";
+        }
+        if($ketinggianair <= $tertutup){
+            $status_ketinggian = "3";
+        }
+        
+        $lastlog = $this->m_datalog->ambilLogTerakhir()->row_array();
+        $lastlog = $lastlog['posisipintu'];
 
         if ($otomatisasi == 1) { //otomatis nyala
             if($ketinggianair <= $tertutup){
                 $this->m_sensor->tutupPintu();
+                if($lastlog !=0){
+                    $this->m_datalog->tambahLogOtomatis(1, 0, 1, $terbuka, $tertutup, $ketinggianair, $tanggal, $jam);
+                }
             }
             elseif($ketinggianair > $tertutup && $ketinggianair < $terbuka){
                 $this->m_sensor->bukaPintusebagian();
+                
+                if ($lastlog !=2) {
+                    $this->m_datalog->tambahLogOtomatis(1, 2, 1, $terbuka, $tertutup, $ketinggianair, $tanggal, $jam);
+                }
             }
             elseif($ketinggianair >= $terbuka){
                 $this->m_sensor->bukaPintu();
+                if ($lastlog !=1) {
+                    $this->m_datalog->tambahLogOtomatis(1, 1, 1, $terbuka, $tertutup, $ketinggianair, $tanggal, $jam);
+                }
             }
         }
+
         $status_pintu = $this->m_pengaturan->ambilDatapintu1()->result();
+        $data = array('status_ketinggian' => $status_ketinggian);
+        array_push($status_pintu, $data);
+        
         echo json_encode($status_pintu);
     }
 

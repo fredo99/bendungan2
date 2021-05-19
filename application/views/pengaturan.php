@@ -141,6 +141,7 @@
                                                         <option value="">--Pilih--</option>
                                                         <option value="0">Manual</option>
                                                         <option value="1">otomatis</option>
+                                                        <!-- <?php if ($otomatisasi['status'] == 0) { echo "selected=\"selected\""; } ?>? -->
                                                     </select>
                                                 </form>
                                             </div>
@@ -231,11 +232,11 @@
 
     <script>
         function ubahStatus(value){
-            var status= value
+            var status1= value;
             $.ajax({
                 url: "<?php echo base_url(); ?>Pengaturan/ubahStatusPintu",
                 type: "POST",
-                data: {status: value},
+                data: {status: status1},
                 dataType: 'json',
                 success: function(data) {
                 }

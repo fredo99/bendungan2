@@ -19,7 +19,7 @@ class M_sensor extends CI_Model
     }
 
     function datamonitoring($now){
-        $query = $this->db->query("SELECT * FROM monitoring WHERE tanggal LIKE '$now%' order by tanggal desc LIMIT 10");
+        $query = $this->db->query("SELECT * FROM monitoring WHERE tanggal LIKE '$now%' order by waktu desc LIMIT 10");
         return $query->result();
     }
 
