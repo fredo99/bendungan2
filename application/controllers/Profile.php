@@ -8,7 +8,7 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_profile');
+        $this->load->model('M_profile');
     }
 
     public function index()
@@ -16,7 +16,7 @@ class Profile extends CI_Controller
         if ($this->session->has_userdata('user')) {
             $email = $this->session->userdata('user')['email'];
             $data["title"] = "Profile";
-            $data["user"] = $this->m_profile->getUser($email);
+            $data["user"] = $this->M_profile->getUser($email);
             $this->load->view('templates/header', $data);
             $this->load->view('profile');
         } else {
@@ -33,7 +33,7 @@ class Profile extends CI_Controller
         echo($password);
         if($passwordlama == $password){
             
-            $this->m_profile->savePassword($passwordbaru,$email);
+            $this->M_profile->savePassword($passwordbaru,$email);
             $this->session->set_flashdata('password', '<div class="alert alert-success" role="alert">Password Berhasil Diubah</div>');
             redirect(base_url('profile'));
         }
@@ -58,8 +58,10 @@ class Profile extends CI_Controller
             'jenkel' => $jenkel,
             'no' => $nomor
         );
+
+        var_dump($data);
         
-        $this->m_profile->ubahProfil($data, $email);
+        $this->M_profile->ubahProfil($data, $email);
 
         $this->session->set_flashdata('ubahprofil', '<div class="alert alert-success" role="alert">Data Berhasil Diubah</div>');
         redirect(base_url('profile'));

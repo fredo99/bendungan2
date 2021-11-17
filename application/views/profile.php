@@ -27,7 +27,9 @@
                             <div class="card card-primary card-outline">
                                 <div class="card-body box-profile">
                                     <div class="text-center">
-                                        <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url() ?>dist/img/user2-160x160.jpg" alt="User profile picture">
+                                        <img class="profile-user-img img-fluid img-circle"
+                                            src="<?php echo base_url() ?>dist/img/user2-160x160.jpg"
+                                            alt="User profile picture">
                                     </div>
 
                                     <h3 class="profile-username text-center"><?= $user->nama; ?></h3>
@@ -53,7 +55,8 @@
 
                                     <strong><i class="far fa-file-alt mr-1"></i> Keterangan</strong>
 
-                                    <p class="text-muted">Terdapat 1 pintu bendungan yang dapat dilakukan pengaturan pada ketinggian air serta pintu dibuka secara manual melalui Website ini.</p>
+                                    <p class="text-muted">Terdapat 1 pintu bendungan yang dapat dilakukan pengaturan
+                                        pada ketinggian air serta pintu dibuka secara manual melalui Website ini.</p>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -67,45 +70,57 @@
                                 </div>
                                 <div class="card-body">
                                     <?= $this->session->flashdata('ubahprofil'); ?>
-                                    <form class="form-horizontal" method="POST" id="profile" action="<?= base_url() . 'profile/ubahProfil'; ?>">
+                                    <?= $this->session->unset_userdata('ubahprofil');?>
+                                    <form class="form-horizontal" method="POST" id="profile"
+                                        action="<?= base_url() . 'profile/ubahProfil'; ?>">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name" value="<?= $user->nama; ?>"disabled>
+                                                <input type="text" class="form-control" id="nama" name="nama"
+                                                    placeholder="Name" value="<?= $user->nama; ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="<?= $user->email; ?>" disabled>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="<?= $user->email; ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName2" class="col-sm-2 col-form-label">Alamat</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="<?= $user->alamat; ?>"disabled>
+                                                <input type="text" class="form-control" id="alamat" name="alamat"
+                                                    placeholder="Alamat" value="<?= $user->alamat; ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputExperience" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                            <label for="inputExperience" class="col-sm-2 col-form-label">Jenis
+                                                Kelamin</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="jenkel" id="jenkel" disabled>
-                                                    <option value="" >--Jenis kelamin--</option>
-                                                    <option value="1" <?php if($user->jenkel == 1) echo 'selected';?>>Laki-laki</option>;
-                                                    <option value="1" <?php if($user->jenkel == 2) echo 'selected';?>>Perempuan</option>;
+                                                    <option value="">--Jenis kelamin--</option>
+                                                    <option value="1" <?php if($user->jenkel == 1) echo 'selected';?>>
+                                                        Laki-laki</option>;
+                                                    <option value="1" <?php if($user->jenkel == 2) echo 'selected';?>>
+                                                        Perempuan</option>;
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputSkills" class="col-sm-2 col-form-label">No Handphone</label>
+                                            <label for="inputSkills" class="col-sm-2 col-form-label">No
+                                                Handphone</label>
                                             <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="nomor" name="nomor" placeholder="No telp" value="<?= $user->no; ?>" disabled>
+                                                <input type="number" class="form-control" id="nomor" name="nomor"
+                                                    placeholder="No telp" value="<?= $user->no; ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
-                                                <button type="button" id="close-edit-profile" class="btn btn-danger">Tutup</button>
-                                                <button type="submit" id="edit-profile" data-btn="edit" class="btn btn-primary">Ubah</button>
+                                                <button type="button" id="close-edit-profile"
+                                                    class="btn btn-danger">Tutup</button>
+                                                <button type="submit" id="edit-profile" data-btn="edit"
+                                                    class="btn btn-primary">Ubah</button>
                                             </div>
                                         </div>
                                     </form>
@@ -116,24 +131,30 @@
                                     <h3 class="card-title">Ubah Kata Sandi</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form class="form-horizontal" method="POST" id="ubah-password" action="<?= base_url() . 'profile/ubahPassword'; ?>">
-                                    <?= $this->session->flashdata('password'); ?>
+                                    <form class="form-horizontal" method="POST" id="ubah-password"
+                                        action="<?= base_url() . 'profile/ubahPassword'; ?>">
+                                        <?= $this->session->flashdata('password'); ?>
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Kata Sandi Lama</label>
+                                            <label for="inputName" class="col-sm-2 col-form-label">Kata Sandi
+                                                Lama</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="passwordlama" name="passwordlama" placeholder="Katasandi lama" required>
+                                                <input type="password" class="form-control" id="passwordlama"
+                                                    name="passwordlama" placeholder="Katasandi lama" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputpassword" class="col-sm-2 col-form-label">Kata Sandi Baru</label>
+                                            <label for="inputpassword" class="col-sm-2 col-form-label">Kata Sandi
+                                                Baru</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="passwordbaru" name="passwordbaru" placeholder="Katasandi Baru" required>
+                                                <input type="password" class="form-control" id="passwordbaru"
+                                                    name="passwordbaru" placeholder="Katasandi Baru" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
                                                 <!-- <button type="button" id="close-ubah-password" class="btn btn-danger">Tutup</button> -->
-                                                <button type="submit" data-btn="edit" id="tombol-ubah" class="btn btn-success">Simpan</button>
+                                                <button type="submit" data-btn="edit" id="tombol-ubah"
+                                                    class="btn btn-success">Simpan</button>
                                             </div>
                                         </div>
                                     </form>
@@ -144,58 +165,59 @@
                 </div>
             </section>
         </div>
-    </div>
-    <!-- load footer -->
-    <?php $this->load->view('templates/footer') ?>
-    <!-- load script -->
-    <?php $this->load->view('templates/script') ?>
-    <script>
-        $(document).ready(function () {
-            $("#edit-profile").click(function(e) {
-                if ($(this).data("btn") == "edit") {
-                    e.preventDefault();
-                    $(this).val("Simpan Profil");
-                    $(this).removeClass("btn-primary");
-                    $(this).addClass("btn-success");
-                    $("#profile #nama").removeAttr("disabled");
-                    $("#profile #alamat").removeAttr("disabled");
-                    $("#profile #jenkel").removeAttr("disabled");
-                    $("#profile #nomor").removeAttr("disabled");
-                    $(this).data("btn", "save");
-                }
-            });
+        </div>
+        <!-- load footer -->
+        <?php $this->load->view('templates/footer') ?>
+        <!-- load script -->
+        <?php $this->load->view('templates/script') ?>
+        <script>
+$(document).ready(function() {
+    $("#edit-profile").click(function(e) {
+        if ($(this).data("btn") == "edit") {
+            e.preventDefault();
+            $(this).val("Simpan Profil");
+            $(this).removeClass("btn-primary");
+            $(this).addClass("btn-success");
+            $("#profile #nama").removeAttr("disabled");
+            $("#profile #alamat").removeAttr("disabled");
+            $("#profile #jenkel").removeAttr("disabled");
+            $("#profile #nomor").removeAttr("disabled");
+            $(this).data("btn", "save");
+        }
+    });
 
-            $("#close-edit-profile").click(function() {
-                $("#edit-profile").val("Ubah Profil");
-                $("#edit-profile").removeClass("btn-success");
-                $("#edit-profile").addClass("btn-primary");
-                $("#edit-profile").data("btn", "edit");
-                $("#profile #nama").attr("disabled", true);
-                $("#profile #alamat").attr("disabled", true);
-                $("#profile #jenkel").attr("disabled", true);
-                $("#profile #nomor").attr("disabled", true);
-            });
-        })
-        // $("#tombol-ubah").click(function(e) {
-        //             if ($(this).data("btn") == "edit") {
-        //                 e.preventDefault();
-        //                 $(this).val("Simpan Password");
-        //                 $(this).removeClass("btn-primary");
-        //                 $(this).addClass("btn-success");
-        //                 $("#ubah-password #passwordlama").removeAttr("disabled");
-        //                 $("#ubah-password #passwordbaru").removeAttr("disabled");
-        //                 $(this).data("btn", "save");
-        //             }
-        //         });
+    $("#close-edit-profile").click(function() {
+        $("#edit-profile").val("Ubah Profil");
+        $("#edit-profile").removeClass("btn-success");
+        $("#edit-profile").addClass("btn-primary");
+        $("#edit-profile").data("btn", "edit");
+        $("#profile #nama").attr("disabled", true);
+        $("#profile #alamat").attr("disabled", true);
+        $("#profile #jenkel").attr("disabled", true);
+        $("#profile #nomor").attr("disabled", true);
+    });
+})
+// $("#tombol-ubah").click(function(e) {
+//             if ($(this).data("btn") == "edit") {
+//                 e.preventDefault();
+//                 $(this).val("Simpan Password");
+//                 $(this).removeClass("btn-primary");
+//                 $(this).addClass("btn-success");
+//                 $("#ubah-password #passwordlama").removeAttr("disabled");
+//                 $("#ubah-password #passwordbaru").removeAttr("disabled");
+//                 $(this).data("btn", "save");
+//             }
+//         });
 
-        //     $("#close-ubah-password").click(function() {
-        //         $("#tombol-ubah").val("Ubah Password");
-        //         $("#tombol-ubah").removeClass("btn-success");
-        //         $("#tombol-ubah").addClass("btn-primary");
-        //         $("#tombol-ubah").data("btn", "edit");
-        //         $("#ubah-password #passwordlama").attr("disabled", true);
-        //         $("#ubah-password #passwordbaru").attr("disabled", true);
-        // });
-    </script>
-    </body>
-</html>
+//     $("#close-ubah-password").click(function() {
+//         $("#tombol-ubah").val("Ubah Password");
+//         $("#tombol-ubah").removeClass("btn-success");
+//         $("#tombol-ubah").addClass("btn-primary");
+//         $("#tombol-ubah").data("btn", "edit");
+//         $("#ubah-password #passwordlama").attr("disabled", true);
+//         $("#ubah-password #passwordbaru").attr("disabled", true);
+// });
+        </script>
+        </body>
+
+        </html>

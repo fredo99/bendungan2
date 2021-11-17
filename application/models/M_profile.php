@@ -22,8 +22,9 @@ class M_profile extends CI_Model
     }
 
     public function ubahProfil($data, $email){
-        $where = $this->db->where('email', $email);
-        $this->db->update('user', $data, $where);
+        // $this->db->query("UPDATE user SET nama = '$data->nama',email = '$data->email', alamat = '$data->alamat',jenkel = '$data->jenkel', no = '$data->nomor' WHERE email = '$email'");
+        $this->db->where('email', $email);
+        $this->db->update('user', $data);
     }
 
     public function ambilPassword($email){

@@ -24,7 +24,7 @@ class M_datalog extends CI_Model
     }
 
     public function ambilDatalog(){ // berhasil jika hanya pakai 1 pintu saja
-        return $this->db->query("SELECT * FROM datalog")->result();
+        return $this->db->query("SELECT * FROM datalog ORDER BY waktu DESC")->result();
     }
     
 }
