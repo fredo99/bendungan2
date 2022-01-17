@@ -134,6 +134,7 @@
                                     <form class="form-horizontal" method="POST" id="ubah-password"
                                         action="<?= base_url() . 'profile/ubahPassword'; ?>">
                                         <?= $this->session->flashdata('password'); ?>
+                                        <?= $this->session->unset_userdata('password'); ?>
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Kata Sandi
                                                 Lama</label>

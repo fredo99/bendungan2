@@ -26,9 +26,9 @@ class Profile extends CI_Controller
 
     public function ubahPassword(){
         $email = $this->session->userdata('user')['email'];
-        $password = $this->m_profile->ambilPassword($email);
-        $passwordlama = $this->input->post('passwordlama');
-        $passwordbaru = $this->input->post('passwordbaru');
+        $password = $this->M_profile->ambilPassword($email);
+        $passwordlama = md5($this->input->post('passwordlama'));
+        $passwordbaru = md5($this->input->post('passwordbaru'));
 
         echo($password);
         if($passwordlama == $password){

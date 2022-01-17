@@ -24,7 +24,7 @@ class Authentication extends CI_Controller
                 $this->load->view('authentication/login');
             } else {
                 $username = $this->input->post('email');
-                $password = $this->input->post('password');
+                $password = md5($this->input->post('password'));
 
                 $this->db->select('email, password');
                 $this->db->from('user');
@@ -63,5 +63,14 @@ class Authentication extends CI_Controller
             $this->session->unset_userdata('user');
         }
         redirect(base_url('authentication/login'));
+    }
+
+    public function testmd5(){
+        $this->db->select('email, password');
+        $this->db->from('user');
+        $this->db->where('email =','fmaurtino@gmail.com');
+        $users = $this->db->get()->num_rows();
+        $password_md5 = md5($users['password']);
+        var_dump($password_md5);
     }
 }
