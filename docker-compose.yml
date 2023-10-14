@@ -15,7 +15,7 @@ services:
 
   web:
     build:
-      context: ./bendungan
+      context: .
       dockerfile: Dockerfile
     image: bendungan:1.0
     container_name: web-container
