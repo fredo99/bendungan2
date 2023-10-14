@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'insightd_bendungan',
-	'password' => 'insightd_bendungan',
-	'database' => 'insightd_bendungan',
+	'hostname' => 'mysql-container',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'bendungan',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
