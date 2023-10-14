@@ -20,7 +20,7 @@ services:
     image: bendungan:1.0
     container_name: web-container
     ports:
-      - "80:80"
+      - "8001:80"
     depends_on:
       - db
     networks:
