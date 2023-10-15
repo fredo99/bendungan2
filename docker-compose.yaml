@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: bendungan1:0
     container_name: bendungan-container
     ports:
       - "80:80"
@@ -20,6 +21,7 @@ services:
     build:
       context: ../WOHHALE
       dockerfile: Dockerfile
+    image: wohhale1:0
     container_name: wohhale-container
     ports:
       - "8000:80"
