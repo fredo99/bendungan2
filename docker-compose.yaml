@@ -45,5 +45,15 @@ services:
     networks:
       - webnet
 
+  php:
+    image: php:7.4
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: php-container
+    ports: -"9000":"9000"
+    networks:
+      - webnet
+
 networks:
   webnet:
