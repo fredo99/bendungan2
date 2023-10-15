@@ -22,7 +22,7 @@ services:
       dockerfile: Dockerfile
     container_name: wohhale-container
     ports:
-      - "81:80"
+      - "8000:80"
     volumes:
       - ../WOHHALE:/var/www/html
     restart: always
