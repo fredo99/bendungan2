@@ -1,13 +1,13 @@
 version: "3"
 services:
   bendungan:
-    image: nginx:latest
+    image: httpd:latest
     container_name: bendungan-container
     ports:
       - "80:80"
     volumes:
-      - ./root/app/bendungan2/nginx-config/nginx.conf:/etc/nginx/nginx
-      - ./:/usr/share/nginx/html
+      - ./root/app/bendungan2/apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./:/usr/local/apache2/htdocs
     restart: always
     networks:
       - webnet
@@ -18,12 +18,12 @@ services:
       - MYSQL_PASSWORD=password
 
   websitert7:
-    image: nginx:latest
+    image: httpd:latest
     container_name: websitert7-container
     ports:
       - "81:80"
     volumes:
-      - ../websitert7:/usr/share/nginx/html
+      - ../websitert7:/usr/local/apache2/htdocs
     restart: always
     networks:
       - webnet
