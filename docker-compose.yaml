@@ -37,7 +37,7 @@ services:
     image: wohhale1:0
     container_name: wohhale-container
     ports:
-      - "8000:80"
+      - "8000:8000"
     volumes:
       - ../WOHHALE:/var/www/html/wohhale
     restart: always
