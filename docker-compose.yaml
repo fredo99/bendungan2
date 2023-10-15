@@ -41,8 +41,8 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: main_db
-      MYSQL_USER: main_user
+      MYSQL_DATABASE: bendungan
+      MYSQL_USER: fredo
       MYSQL_PASSWORD: password
     restart: always
     networks:
