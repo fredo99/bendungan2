@@ -7,7 +7,7 @@ services:
       - "80:80"
     volumes:
       - ./root/app/bendungan2/nginx-config/nginx.conf:/etc/nginx/nginx
-      - ./:/usr/share/nginx/html
+      - ./:/usr/share/nginx/html/bendungan
     restart: always
     networks:
       - webnet
@@ -23,7 +23,7 @@ services:
     ports:
       - "81:80"
     volumes:
-      - ../websitert7:/usr/share/nginx/html
+      - ../websitert7:/usr/share/nginx/html/websitert7
     restart: always
     networks:
       - webnet
