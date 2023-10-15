@@ -16,19 +16,19 @@ services:
       - MYSQL_USER=fredo
       - MYSQL_PASSWORD=password
 
-  websitert7:
+  wohhale:
     build:
-      context: ../WebsiteRT7
+      context: ../WOHHALE
       dockerfile: Dockerfile
-    container_name: websitert7-container
+    container_name: wohhale-container
     ports:
       - "81:80"
     volumes:
-      - ../WebsiteRT7:/var/www/html
+      - ../WOHHALE:/var/www/html
     restart: always
     environment:
       - MYSQL_HOST=mysql-db2
-      - MYSQL_DATABASE=websitert7
+      - MYSQL_DATABASE=wohhale
       - MYSQL_USER=fredo
       - MYSQL_PASSWORD=password
 
@@ -44,11 +44,12 @@ services:
 
   mysql-db2:
     image: mysql:latest
-    container_name: mysql-websitert7
-    ports: -"3307":"3307"
+    container_name: mysql-wohhale
+    ports: 
+     -"3307":"3307"
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: websitert7
+      MYSQL_DATABASE: wohhale
       MYSQL_USER: fredo
       MYSQL_PASSWORD: password
     restart: always
