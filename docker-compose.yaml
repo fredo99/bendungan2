@@ -7,7 +7,7 @@ services:
       - "80:80"
     volumes:
       # - ./root/app/bendungan2/apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./root/app/bendungan2/root/app/bendungan2/apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - /root/app/bendungan2/root/app/bendungan2/apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./:/usr/local/apache2/htdocs
     restart: always
     networks:
