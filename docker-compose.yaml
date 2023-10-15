@@ -1,13 +1,14 @@
 version: "3"
 services:
   bendungan:
-    image: httpd:latest
+    build:
+      context: .
+      dockerfile: dockerfile
     container_name: bendungan-container
     ports:
       - "80:80"
     volumes:
-      # - ./apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./:/usr/local/apache2/htdocs/bendungan
+      - ./:/var/www/html/bendungan/
     restart: always
     networks:
       - webnet
@@ -18,12 +19,14 @@ services:
       - MYSQL_PASSWORD=password
 
   websitert7:
-    image: httpd:latest
+    build:
+      context: .
+      dockerfile: dockerfile
     container_name: websitert7-container
     ports:
       - "81:80"
     volumes:
-      - ../websitert7:/usr/local/apache2/htdocs/websitert7
+      - ../websitert7:/var/www/html/websitert7
     restart: always
     networks:
       - webnet
@@ -42,16 +45,6 @@ services:
       MYSQL_USER: main_user
       MYSQL_PASSWORD: password
     restart: always
-    networks:
-      - webnet
-
-  php:
-    image: php:7.4
-    build:
-      context: .
-      dockerfile: dockerfile
-    container_name: php-container
-    ports: -"9000":"9000"
     networks:
       - webnet
 
