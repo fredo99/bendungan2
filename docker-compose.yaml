@@ -1,7 +1,7 @@
 version: "3"
 services:
   bendungan:
-    image: php:7.4
+    image: nginx:latest
     container_name: bendungan-container
     ports:
       - "80:80"
