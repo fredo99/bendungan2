@@ -24,8 +24,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://bendungan.insightdata.xyz/';
-// $config['base_url'] = 'http://smart-door.my.id/';
-$config['base_url'] = 'http://154.49.243.77:8000/';
+$config['base_url'] = 'http://smart-door.my.id/';
+// $config['base_url'] = 'http://154.49.243.77:8000/';
 
 /*
 |--------------------------------------------------------------------------
