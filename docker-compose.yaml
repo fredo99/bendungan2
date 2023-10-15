@@ -1,0 +1,48 @@
+version: "3"
+services:
+  bendungan:
+    image: nginx:latest
+    container_name: bendungan-container
+    ports:
+      - "80:80"
+    volumes:
+      - ./bendungan:/usr/share/nginx/html
+    restart: always
+    networks:
+      - webnet
+    environment:
+      - MYSQL_HOST=mysql-db
+      - MYSQL_DATABASE=bendungan
+      - MYSQL_USER=fredo
+      - MYSQL_PASSWORD=password
+
+  websitert7:
+    image: nginx:latest
+    container_name: websitert7-container
+    ports:
+      - "81:80"
+    volumes:
+      - ./websitert7:/usr/share/nginx/html
+    restart: always
+    networks:
+      - webnet
+    environment:
+      - MYSQL_HOST=mysql-db
+      - MYSQL_DATABASE=websitert7
+      - MYSQL_USER=fredo
+      - MYSQL_PASSWORD=password
+
+  mysql-db:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: main_db
+      MYSQL_USER: main_user
+      MYSQL_PASSWORD: password
+    restart: always
+    networks:
+      - webnet
+
+networks:
+  webnet:
