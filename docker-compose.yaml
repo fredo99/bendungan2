@@ -18,6 +18,18 @@ services:
       - MYSQL_PASSWORD=password
     networks:
       - bendungan
+  mysql-db1:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bendungan
+      MYSQL_USER: fredo
+      MYSQL_PASSWORD: password
+    restart: always
+    networks:
+      - bendungan
+      
   wohhale:
     build:
       context: ../WOHHALE
@@ -36,18 +48,6 @@ services:
       - MYSQL_PASSWORD=password
     networks:
       - wohhale
-
-  mysql-db1:
-    image: mysql:latest
-    container_name: mysql-container
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: bendungan
-      MYSQL_USER: fredo
-      MYSQL_PASSWORD: password
-    restart: always
-    networks:
-      - bendungan
 
   mysql-db2:
     image: mysql:latest
