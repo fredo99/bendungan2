@@ -3,7 +3,7 @@ services:
   bendungan:
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     container_name: bendungan-container
     ports:
       - "80:80"
@@ -21,7 +21,7 @@ services:
   websitert7:
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     container_name: websitert7-container
     ports:
       - "81:80"
