@@ -7,7 +7,7 @@ services:
       - "80:80"
     volumes:
       # - ./apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./:/usr/local/apache2/htdocs
+      - ./:/usr/local/apache2/htdocs/bendungan
     restart: always
     networks:
       - webnet
@@ -23,7 +23,7 @@ services:
     ports:
       - "81:80"
     volumes:
-      - ../websitert7:/usr/local/apache2/htdocs
+      - ../websitert7:/usr/local/apache2/htdocs/websitert7
     restart: always
     networks:
       - webnet
