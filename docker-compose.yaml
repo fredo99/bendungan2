@@ -16,6 +16,8 @@ services:
       - MYSQL_DATABASE=bendungan
       - MYSQL_USER=fredo
       - MYSQL_PASSWORD=password
+    networks:
+      - bendungan
 
   wohhale:
     build:
@@ -33,6 +35,8 @@ services:
       - MYSQL_DATABASE=wohhale
       - MYSQL_USER=fredo
       - MYSQL_PASSWORD=password
+    networks:
+      - wohhale
 
   mysql-db1:
     image: mysql:latest
@@ -43,6 +47,8 @@ services:
       MYSQL_USER: fredo
       MYSQL_PASSWORD: password
     restart: always
+    networks:
+      - bendungan
 
   mysql-db2:
     image: mysql:latest
@@ -55,3 +61,11 @@ services:
       MYSQL_USER: fredo
       MYSQL_PASSWORD: password
     restart: always
+    networks:
+      - wohhale
+
+networks:
+  bendungan:
+    bridge
+  wohhale:
+    bridge
