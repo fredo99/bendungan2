@@ -8,35 +8,31 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./:/var/www/html/
+      - ./:/var/www/html
     restart: always
-    networks:
-      - webnet
     environment:
-      - MYSQL_HOST=mysql-db
+      - MYSQL_HOST=mysql-db1
       - MYSQL_DATABASE=bendungan
       - MYSQL_USER=fredo
       - MYSQL_PASSWORD=password
 
-  # websitert7:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: websitert7-container
-  #   ports:
-  #     - "81:80"
-  #   volumes:
-  #     - ../websitert7:/var/www/html/websitert7
-  #   restart: always
-  #   networks:
-  #     - webnet
-  #   environment:
-  #     - MYSQL_HOST=mysql-db
-  #     - MYSQL_DATABASE=websitert7
-  #     - MYSQL_USER=fredo
-  #     - MYSQL_PASSWORD=password
+  websitert7:
+    build:
+      context: ../WebsiteRT7
+      dockerfile: Dockerfile
+    container_name: websitert7-container
+    ports:
+      - "81:80"
+    volumes:
+      - ../WebsiteRT7:/var/www/html
+    restart: always
+    environment:
+      - MYSQL_HOST=mysql-db2
+      - MYSQL_DATABASE=websitert7
+      - MYSQL_USER=fredo
+      - MYSQL_PASSWORD=password
 
-  mysql-db:
+  mysql-db1:
     image: mysql:latest
     container_name: mysql-container
     environment:
@@ -45,8 +41,13 @@ services:
       MYSQL_USER: fredo
       MYSQL_PASSWORD: password
     restart: always
-    networks:
-      - webnet
 
-networks:
-  webnet:
+  mysql-db2:
+    image: mysql:latest
+    container_name: mysql-websitert7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: websitert7
+      MYSQL_USER: fredo
+      MYSQL_PASSWORD: password
+    restart: always
