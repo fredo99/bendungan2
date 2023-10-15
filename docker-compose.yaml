@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      # - ./apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./:/usr/local/apache2/htdocs
     restart: always
     networks:
