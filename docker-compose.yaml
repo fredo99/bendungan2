@@ -8,7 +8,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./:/var/www/html/bendungan/
+      - ./:/var/www/html/
     restart: always
     networks:
       - webnet
@@ -18,23 +18,23 @@ services:
       - MYSQL_USER=fredo
       - MYSQL_PASSWORD=password
 
-  websitert7:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: websitert7-container
-    ports:
-      - "81:80"
-    volumes:
-      - ../websitert7:/var/www/html/websitert7
-    restart: always
-    networks:
-      - webnet
-    environment:
-      - MYSQL_HOST=mysql-db
-      - MYSQL_DATABASE=websitert7
-      - MYSQL_USER=fredo
-      - MYSQL_PASSWORD=password
+  # websitert7:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: websitert7-container
+  #   ports:
+  #     - "81:80"
+  #   volumes:
+  #     - ../websitert7:/var/www/html/websitert7
+  #   restart: always
+  #   networks:
+  #     - webnet
+  #   environment:
+  #     - MYSQL_HOST=mysql-db
+  #     - MYSQL_DATABASE=websitert7
+  #     - MYSQL_USER=fredo
+  #     - MYSQL_PASSWORD=password
 
   mysql-db:
     image: mysql:latest
