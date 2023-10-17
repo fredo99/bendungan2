@@ -7,7 +7,7 @@ services:
     image: bendungan:1.0
     container_name: bendungan-container
     ports:
-      - "8080:8080"
+      - "8080:80"
     volumes:
       - ./:/var/www/html/bendungan
     restart: always
@@ -37,7 +37,7 @@ services:
     image: wohhale:1.0
     container_name: wohhale-container
     ports:
-      - "8000:8000"
+      - "8000:80"
     volumes:
       - ../WOHHALE:/var/www/html/wohhale
     restart: always
